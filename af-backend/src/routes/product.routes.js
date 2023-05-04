@@ -31,21 +31,31 @@ productRouter.get(
 );
 
 // Get a single product by ID
-productRouter.get("/products/:id", getSingleProduct);
+productRouter.get("/products/:productId", getSingleProduct);
 
 // Add a new product
 productRouter.post("/products", protect, farmerProtect, postAddProduct);
 
 // Update an existing product
-productRouter.put("/products/:id", protect, farmerProtect, editProduct);
+productRouter.patch("/products/:productId", protect, farmerProtect, editProduct);
 
 // Delete a product by ID
-productRouter.delete("/products/:id", protect, farmerProtect, deleteProduct);
+productRouter.delete(
+  "/products/:productId",
+  protect,
+  farmerProtect,
+  deleteProduct
+);
 
 // Get all products on sale
 productRouter.get("/products/on-sale", getAllProductsOnSale);
 
 // Update the visibility status of a product
-productRouter.patch("/products/:id/visibility", protect, adminProtect, updateProductVisibility);
+productRouter.patch(
+  "/products/:productId/visibility",
+  protect,
+  adminProtect,
+  updateProductVisibility
+);
 
 export default productRouter;

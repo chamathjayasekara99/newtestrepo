@@ -1,7 +1,9 @@
 import Product from "../models/product.model.js";
 import logger from "../utils/logger.js";
-
+// method to get all products
 export const findProducts = async (farmerId) => {
+  //chec whether products are available or not
+  //if available return the products else return error
   try {
     let products = null;
 
@@ -28,7 +30,7 @@ export const findProducts = async (farmerId) => {
     throw err;
   }
 };
-
+// add new product to the database
 export const createProduct = async (product) => {
   const newProduct = new Product(product);
   if (!newProduct) return null;
@@ -48,9 +50,10 @@ export const createProduct = async (product) => {
 export const getProductByProductId = async (product_id) => {
   try {
     // get the product with the specified pPid
-    let Product = await Product.find({ pPid: product_id });
-    if (Product) {
-      return Product;
+    //if available return the product else return error
+    let product = await Product.find({ pPid: product_id });
+    if (product) {
+      return product;
     } else {
       const error = new Error("Product not found");
       error.status = 404;
@@ -90,6 +93,24 @@ export const updateVisiblity = async (product) => {
     let updatedProduct = await newProduct.save();
     return updatedProduct;
   } catch (error) {
+    return null;
+  }
+};
+
+export const getRemovedProduct = async (product_id) => {
+  try {
+    const product = await Product.findByIdAndDelete(product_id);
+    return product;
+  } catch (err) {
+    return null;
+  }
+};
+
+export const getUpdatedProduct = async (productData) => {
+  try {
+    const updatedProduct = await productData.save();
+    return updatedProduct;
+  } catch (err) {
     return null;
   }
 };
