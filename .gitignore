@@ -1,0 +1,25 @@
+# ignore node_modules directory in frontend and backend
+
+af-backend/node_modules
+
+# ignore build artifacts and compiled files in frontend and backend
+
+af-backend/build
+af-backend/dist
+
+# ignore editor and IDE specific files and directories
+.vscode
+.idea
+*.iml
+*.ipr
+*.iws
+
+# ignore environment variables
+.env
+.env.local
+.env.*.local
+
+# ignore user-specific and machine-specific files
+.DS_Store
+Thumbs.db
+*.swp
